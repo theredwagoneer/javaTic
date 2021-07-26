@@ -9,6 +9,7 @@
 plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
+    id 'maven-publish'
 }
 
 repositories {
@@ -21,4 +22,21 @@ dependencies {
     
     implementation 'org.usb4java:usb4java-javax:1.3.0'
 
+}
+
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            name = 'javatic'
+            group = 'trw.pololu.tic'
+            url = layout.buildDirectory.dir("javatic")
+        }
+    }
 }
