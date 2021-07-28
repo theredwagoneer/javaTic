@@ -359,7 +359,6 @@ public class TicInterface {
 			e.printStackTrace();
 		} catch ( UsbDisconnectedException | UsbException e) {
 			// This is a missing device or HW error
-			System.out.println("Lost It");
 			this.ticDev = null;
 			throw e;
 		}
