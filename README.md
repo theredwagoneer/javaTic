@@ -5,3 +5,7 @@ Provides ENUM interfaces for the commands, variables and settings from the contr
 
 Instantiate a TIC interface, then call the .Send method on the Enum of your choice.
 
+## License
+
+MIT License.
+
