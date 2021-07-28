@@ -8,6 +8,7 @@ plugins {
 }
 
 group = 'trw.pololu.tic'
+version = '1.001'
 
 repositories {
     // Use jcenter for resolving dependencies.
