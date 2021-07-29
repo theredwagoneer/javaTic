@@ -1,4 +1,4 @@
-package trw.pololu.tic;
+package com.github.theredwagoneer.javaTic;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;

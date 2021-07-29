@@ -13,4 +13,4 @@
  * 
  * @author theredwagoneer
  */
-package trw.pololu.tic;
+package com.github.theredwagoneer.javaTic;

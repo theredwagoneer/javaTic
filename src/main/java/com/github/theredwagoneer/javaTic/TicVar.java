@@ -1,4 +1,4 @@
-package trw.pololu.tic;
+package com.github.theredwagoneer.javaTic;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

@@ -1,4 +1,4 @@
-package trw.pololu.tic;
+package com.github.theredwagoneer.javaTic;
 
 import javax.usb.UsbDisconnectedException;
 import javax.usb.UsbException;
