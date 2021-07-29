@@ -7,7 +7,7 @@ plugins {
     id 'maven-publish'
 }
 
-group = 'trw.pololu.tic'
+group = 'com.github.theredwagoneer.javatic'
 version = '1.001'
 
 repositories {

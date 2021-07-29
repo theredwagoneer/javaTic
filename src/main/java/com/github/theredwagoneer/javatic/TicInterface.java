@@ -1,4 +1,4 @@
-package com.github.theredwagoneer.javaTic;
+package com.github.theredwagoneer.javatic;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;

@@ -13,4 +13,4 @@
  * 
  * @author theredwagoneer
  */
-package com.github.theredwagoneer.javaTic;
+package com.github.theredwagoneer.javatic;
