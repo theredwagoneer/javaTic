@@ -1,6 +1,7 @@
 package com.github.theredwagoneer.javatic;
 
 import java.io.UnsupportedEncodingException;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import javax.usb.UsbException;
 import javax.usb.UsbHostManager;
 import javax.usb.UsbHub;
 import javax.usb.UsbServices;
+
 
 /**
  * The TicInterface class interfaces directly to the tic over USB.
@@ -226,16 +228,24 @@ public class TicInterface {
 	 */
  	private boolean assignTicDev() {
  		final int TIC_VENDOR_ID = 0x1ffb;
+ 		UsbHub hub;
+ 		UsbServices services;
  		
+
+		try {
+			services = UsbHostManager.getUsbServices();
+ 			hub = services.getRootUsbHub();
+		} catch (SecurityException | UsbException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return false;
+		}
+
 		try 
 		{
-			final UsbServices services = UsbHostManager.getUsbServices();
-			final UsbHub hub = services.getRootUsbHub();
-			
-			this.ticDev = findDevice(hub, TIC_VENDOR_ID, this.searchModelNum, this.searchSerialNum);
-			
+			this.ticDev = findDevice(hub, TIC_VENDOR_ID, this.searchModelNum, this.searchSerialNum);	
 		} 
-		catch (SecurityException | UsbException | UsbDisconnectedException e) 
+		catch (SecurityException | UsbDisconnectedException e) 
 		{
 			// failed to find Tic.  Don't do anything, just keep looking.
 		}  
