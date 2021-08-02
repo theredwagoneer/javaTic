@@ -1,8 +1,6 @@
 package com.github.theredwagoneer.javatic;
 
-import java.io.File;
 import java.io.UnsupportedEncodingException;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +12,6 @@ import javax.usb.UsbDevice;
 import javax.usb.UsbDeviceDescriptor;
 import javax.usb.UsbDisconnectedException;
 import javax.usb.UsbException;
-import javax.usb.UsbHostManager;
 import javax.usb.UsbHub;
 import javax.usb.UsbServices;
 

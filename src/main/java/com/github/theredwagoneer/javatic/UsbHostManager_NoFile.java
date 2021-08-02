@@ -16,14 +16,13 @@ package com.github.theredwagoneer.javatic;
  * of the Common Public License:
  * http://oss.software.ibm.com/developerworks/opensource/license-cpl.html
  */
-
-import java.io.*;
-import java.util.*;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 import javax.usb.UsbException;
 import javax.usb.UsbServices;
-
-import java.security.*;
 
 /**
  * Entry point for javax.usb. Modified by theredwagoneer to not need a properties file.
@@ -129,7 +128,7 @@ public class UsbHostManager_NoFile
 	public static final String JAVAX_USB_PROPERTIES_FILE = "javax.usb.properties";
 	public static final String JAVAX_USB_USBSERVICES_PROPERTY = "javax.usb.services";
 
-	private static final String PROPERTIES_FILE_NOT_FOUND = "Properties file " + JAVAX_USB_PROPERTIES_FILE + " not found.";
+	
 	private static final String PROPERTIES_FILE_IOEXCEPTION_READING = "IOException while reading properties file " + JAVAX_USB_PROPERTIES_FILE;
 	private static final String PROPERTIES_FILE_IOEXCEPTION_CLOSING = "IOException while closing properties file " + JAVAX_USB_PROPERTIES_FILE;
 
