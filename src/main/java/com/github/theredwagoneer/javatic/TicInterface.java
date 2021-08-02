@@ -12,6 +12,7 @@ import javax.usb.UsbDevice;
 import javax.usb.UsbDeviceDescriptor;
 import javax.usb.UsbDisconnectedException;
 import javax.usb.UsbException;
+import javax.usb.UsbHostManager;
 import javax.usb.UsbHub;
 import javax.usb.UsbServices;
 
@@ -230,7 +231,7 @@ public class TicInterface {
  		UsbServices services;
  		
 		try {
-			services = UsbHostManager_NoFile.getUsbServices();
+			services = UsbHostManager.getUsbServices();
  			hub = services.getRootUsbHub();
 		} catch (SecurityException | UsbException e1) {
 			// TODO Auto-generated catch block
