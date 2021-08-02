@@ -1,5 +1,6 @@
 package com.github.theredwagoneer.javatic;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 
 import java.util.HashMap;
@@ -231,9 +232,8 @@ public class TicInterface {
  		UsbHub hub;
  		UsbServices services;
  		
-
 		try {
-			services = UsbHostManager.getUsbServices();
+			services = UsbHostManager_NoFile.getUsbServices();
  			hub = services.getRootUsbHub();
 		} catch (SecurityException | UsbException e1) {
 			// TODO Auto-generated catch block
