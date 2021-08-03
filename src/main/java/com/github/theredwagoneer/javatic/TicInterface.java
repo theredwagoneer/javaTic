@@ -99,9 +99,21 @@ public class TicInterface {
     {
     	CompassSearchListener compassSearchListener = new CompassSearchListener();
     	
-    	// Run it once and see if it is allready there
-    	compassSearchListener.usbDeviceAttached(null);
-    	
+    	UsbServices services;
+ 		
+		try {
+			services = UsbHostManager.getUsbServices();
+			
+			services.addUsbServicesListener(compassSearchListener);
+			
+	    	// Run it once and see if it is already there
+	    	compassSearchListener.usbDeviceAttached(null);
+			
+		} catch (SecurityException | UsbException e) {
+			// This is a major error if we can't get the services
+			e.printStackTrace();
+		}
+	
     }
     
     /**
