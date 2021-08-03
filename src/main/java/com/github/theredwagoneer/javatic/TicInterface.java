@@ -4,8 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import javax.usb.UsbControlIrp;
 import javax.usb.UsbDevice;
@@ -15,6 +13,8 @@ import javax.usb.UsbException;
 import javax.usb.UsbHostManager;
 import javax.usb.UsbHub;
 import javax.usb.UsbServices;
+import javax.usb.event.UsbServicesEvent;
+import javax.usb.event.UsbServicesListener;
 
 
 /**
@@ -62,19 +62,15 @@ public class TicInterface {
     private Map<TicSet,Long> ticSettings;
     
     /**
-     * The interface maintains hotpluggability by running a timer task to make
-     * sure there is an active tic every 500ms.  This timer manages those tasks
-     * for every interface.
+     * Class to listen for new USB devices and see if they are us.
+     * @author theredwagoneer
+     *
      */
-    private static final Timer searchTimer = new Timer("TicSearchTimer", true);
-    
-    /**
-     * This task checks to see if ticDev is null (no TIC).  If so, it looks for
-     * a Tic and applies the stored settings to it.
-     */
-    private final TimerTask searchTask = new TimerTask() {
-    	
-    	public void run() {	
+    private class CompassSearchListener implements UsbServicesListener 
+    {    	
+		@Override
+		public void usbDeviceAttached(UsbServicesEvent event) 
+		{
     		if( ticDev == null )
     		{
     			isSearching = true;
@@ -84,10 +80,30 @@ public class TicInterface {
        			}
     			isSearching = false;
     		}
-        }
+			
+		}
+
+		@Override
+		public void usbDeviceDetached(UsbServicesEvent event) {
+			// We don't do anything on detach.  We will find out soon enough 
+			// if it was us.
+			
+		}
     	
     };
         
+    /**
+     * Captures actions taken regardless of constructor called.
+     */
+    private void commonConstructor()
+    {
+    	CompassSearchListener compassSearchListener = new CompassSearchListener();
+    	
+    	// Run it once and see if it is allready there
+    	compassSearchListener.usbDeviceAttached(null);
+    	
+    }
+    
     /**
      * Constructor: Attach to any TIC
      */
@@ -95,7 +111,7 @@ public class TicInterface {
     {   
     	this.searchModelNum = 0;
     	this.searchSerialNum = null;
-    	searchTimer.schedule(searchTask, 0, 500);
+    	commonConstructor();
     }
    
     /** Constructor: Attach to any TIC of specified Model
@@ -106,7 +122,7 @@ public class TicInterface {
     {   
     	this.searchModelNum =  model.code;
     	this.searchSerialNum = null;
-    	searchTimer.schedule(searchTask, 0, 500);
+    	commonConstructor();
     }
     
    
@@ -119,7 +135,7 @@ public class TicInterface {
     {   
     	this.searchModelNum =  model.code;
     	this.searchSerialNum = serial;
-    	searchTimer.schedule(searchTask, 0, 500);
+    	commonConstructor();
     }
     
     /**
