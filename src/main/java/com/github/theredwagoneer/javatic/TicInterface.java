@@ -31,13 +31,11 @@ public class TicInterface {
 	 * These are the 5 models of TIC and their product codes
 	 */
 	static public enum TicModel{
-    	// I actually only know what the T834 is because I have one.
-    	// TODO Maybe someone else can fill in the others.
-    	TIC_T500(0x0),
+    	TIC_T500(0xBD),
     	TIC_T834(0xB5),
-    	TIC_T825(0x0),
-    	TIC_T249(0x0),
-    	TIC_36v4(0x0);
+    	TIC_T825(0xB3),
+    	TIC_T249(0xC9),
+    	TIC_36v4(0xCB);
     	
     	protected int code;
     	
@@ -46,6 +44,7 @@ public class TicInterface {
     		this.code = code;
     	}
 	}
+	
 	/** Usb Interface to TIC */
 	private UsbDevice ticDev = null;
 	
